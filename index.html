@@ -13,6 +13,33 @@
             font-family: 'Poppins', sans-serif;
             color: #333;
             background-color: #f7f7f7;
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+            position: relative; /* Ensure stacking context for z-index */
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place behind other content */
+            opacity: 0.5; /* 50% transparency */
+            animation: changeBackground 15s infinite; /* Infinite loop for gradient change */
+            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
+            background-size: 600% 600%; /* Smooth gradient transition */
+        }
+
+        @keyframes changeBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .sidebar {
@@ -25,6 +52,7 @@
             background-color: #343a40;
             color: #fff;
             border-right: 1px solid #ddd;
+            z-index: 1; /* Ensure sidebar is above background */
         }
 
         .sidebar img {
@@ -65,6 +93,7 @@
         .content {
             margin-left: 270px;
             padding: 20px;
+            z-index: 0; /* Ensure content is below sidebar */
         }
 
         .section {
@@ -78,8 +107,20 @@
             font-weight: 600;
         }
 
-        .info-group {
-            margin-bottom: 20px;
+        .section-title i {
+            margin-right: 10px;
+        }
+
+        /* Animation for tiles and cards */
+        .info-card,
+        .info-tile {
+            transition: transform 0.3s ease-in-out, background-color 0.3s;
+        }
+
+        .info-card:hover,
+        .info-tile:hover {
+            transform: scale(1.05);
+            background-color: #e9f5f9;
         }
 
         .info-group strong {
@@ -137,6 +178,7 @@
                 position: relative;
                 border-right: none;
                 border-bottom: 1px solid #ddd;
+                z-index: 1; /* Ensure sidebar is above background */
             }
         }
     </style>
@@ -144,22 +186,25 @@
 
 <body>
 
+    <!-- Background Images -->
+    <div class="background-container"></div>
+
     <!-- Sidebar -->
     <div class="sidebar">
-        <img src="profile-photo.png" alt="Profile Photo">
+        <img src="profile-photo.jpg" alt="Profile Photo">
         <h1>Abhinav Kumar</h1>
         <p>SAP Security & GRC Consultant</p>
         <nav class="nav flex-column">
-            <a class="nav-link active" href="#home">Home</a>
-            <a class="nav-link" href="#personal-details">Personal Details</a>
-            <a class="nav-link" href="#professional-details">Professional Details</a>
-            <a class="nav-link" href="#project-experience">Project Experience</a>
-            <a class="nav-link" href="#technical-skills">Technical Skills</a>
-            <a class="nav-link" href="#trained-skills">Trained Skills</a>
-            <a class="nav-link" href="#education">Education</a>
+            <a class="nav-link active" href="#home"><i class="fas fa-home"></i> Home</a>
+            <a class="nav-link" href="#personal-details"><i class="fas fa-user"></i> Personal Details</a>
+            <a class="nav-link" href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
+            <a class="nav-link" href="#professional-details"><i class="fas fa-briefcase"></i> Professional Details</a>
+            <a class="nav-link" href="#project-experience"><i class="fas fa-tasks"></i> Project Experience</a>
+            <a class="nav-link" href="#technical-skills"><i class="fas fa-cogs"></i> Technical Skills</a>
+            <a class="nav-link" href="#trained-skills"><i class="fas fa-lightbulb"></i> Trained Skills</a>
         </nav>
         <div class="social-icons text-center">
-            <a href="https://www.linkedin.com/in/abhinav-kumar" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/abhinav-kumar-504880241" target="_blank"><i class="fab fa-linkedin"></i></a>
             <!-- Add other social links as needed -->
         </div>
     </div>
@@ -167,92 +212,162 @@
     <!-- Content -->
     <div class="content">
         <div id="home" class="section">
-            <h2 class="section-title">Welcome</h2>
+            <h2 class="section-title"><i class="fas fa-home"></i> Welcome</h2>
             <p>I'm a Web Developer with extensive experience in SAP Security and GRC Consulting. My expertise spans various projects and skills.</p>
         </div>
 
         <div id="personal-details" class="section">
-            <h2 class="section-title">Personal Details</h2>
+            <h2 class="section-title"><i class="fas fa-user"></i> Personal Details</h2>
             <div class="info-group">
-                <strong>Name:</strong>
-                <p>Abhinav Kumar</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-id-badge"></i> Name:</h5>
+                        <p class="card-text">Abhinav Kumar</p>
+                    </div>
+                </div>
             </div>
             <div class="info-group">
-                <strong>Nationality:</strong>
-                <p>Indian</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-flag"></i> Nationality:</h5>
+                        <p class="card-text">Indian</p>
+                    </div>
+                </div>
             </div>
             <div class="info-group">
-                <strong>Religion:</strong>
-                <p>Hindu</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-praying-hands"></i> Religion:</h5>
+                        <p class="card-text">Hindu</p>
+                    </div>
+                </div>
             </div>
             <div class="info-group">
-                <strong>Caste:</strong>
-                <p>Kurmi</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-users"></i> Caste:</h5>
+                        <p class="card-text">Kurmi</p>
+                    </div>
+                </div>
             </div>
             <div class="info-group">
-                <strong>Date of Birth:</strong>
-                <p>7th October 1994</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-birthday-cake"></i> Date of Birth:</h5>
+                        <p class="card-text">7th October 1994</p>
+                    </div>
+                </div>
             </div>
             <div class="info-group">
-                <strong>Height:</strong>
-                <p>5'8"</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-arrows-alt-v"></i> Height:</h5>
+                        <p class="card-text">5'8"</p>
+                    </div>
+                </div>
             </div>
             <div class="info-group">
-                <strong>Father's Name:</strong>
-                <p>Mukesh Kumar</p>
-                <p>Occupation: Chemist in Oman</p>
-                <p>Mobile Number: +968 92129020</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-user-tie"></i> Father's Name:</h5>
+                        <p class="card-text">Mukesh Kumar</p>
+                        <p class="card-text">Occupation: Chemist in Oman</p>
+                        <p class="card-text">Mobile Number: +968 92129020</p>
+                    </div>
+                </div>
             </div>
             <div class="info-group">
-                <strong>Mother's Name:</strong>
-                <p>Nitu Singh</p>
-                <p>Occupation: Housewife</p>
-                <p>Mobile Number: +91 9973426521</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-female"></i> Mother's Name:</h5>
+                        <p class="card-text">Nitu Singh</p>
+                        <p class="card-text">Occupation: Housewife</p>
+                        <p class="card-text">Mobile Number: +91 9973426521</p>
+                    </div>
+                </div>
             </div>
             <div class="info-group">
-                <strong>Brother's Name:</strong>
-                <p>Shubham Kumar</p>
-                <p>Occupation: Human Resource Consultant</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-male"></i> Brother's Name:</h5>
+                        <p class="card-text">Shubham Kumar</p>
+                        <p class="card-text">Occupation: Human Resource Consultant</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="education" class="section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="info-group">
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-university"></i> M. Tech in Computer Software Engineering</h5>
+                        <p class="card-text">Birla Institute of Technology and Science, Pilani</p>
+                        <p class="card-text">2019 - 2023</p>
+                        <p class="card-text">Grade: 7.51 CGPA</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-group">
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-university"></i> BCA in Computer/Information Technology Administration and Management</h5>
+                        <p class="card-text">Magadh University</p>
+                        <p class="card-text">2016 - 2019</p>
+                        <p class="card-text">Grade: 74.25%</p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div id="professional-details" class="section">
-            <h2 class="section-title">Professional Details</h2>
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Details</h2>
             <div class="info-group">
-                <strong>Current Position:</strong>
-                <p>SAP Security & GRC Consultant</p>
-            </div>
-            <div class="info-group">
-                <strong>Company:</strong>
-                <p>Wipro Limited, Pune, Maharashtra</p>
-            </div>
-            <div class="info-group">
-                <strong>Experience:</strong>
-                <p>Since January 2020</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-user-tie"></i> Current Position:</h5>
+                        <p class="card-text">SAP Security & GRC Consultant</p>
+                        <p class="card-text">Company: Wipro Limited, Pune, Maharashtra</p>
+                        <p class="card-text">Experience: Since January 2020</p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div id="project-experience" class="section">
-            <h2 class="section-title">Project Experience</h2>
+            <h2 class="section-title"><i class="fas fa-tasks"></i> Project Experience</h2>
             <div class="info-group">
-                <strong>1. RS Components Limited</strong>
-                <p>Role: Senior SAP Security Consultant</p>
-                <p>Tenure: April 2021 - Present</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-project-diagram"></i> Project 1: RS Components Limited</h5>
+                        <p class="card-text">Role: Senior SAP Security Consultant</p>
+                        <p class="card-text">Tenure: April 2021 - Present</p>
+                    </div>
+                </div>
             </div>
             <div class="info-group">
-                <strong>2. Sydney Water Corporation</strong>
-                <p>Role: SAP Security & GRC Consultant</p>
-                <p>Tenure: April 2020 - April 2021</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-project-diagram"></i> Project 2: Sydney Water Corporation</h5>
+                        <p class="card-text">Role: SAP Security & GRC Consultant</p>
+                        <p class="card-text">Tenure: April 2020 - April 2021</p>
+                    </div>
+                </div>
             </div>
             <div class="info-group">
-                <strong>3. YAMAHA MOTOCORP</strong>
-                <p>Role: Siebel CRM Consultant</p>
-                <p>Tenure: January 2020 - April 2020</p>
+                <div class="card info-card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-project-diagram"></i> Project 3: YAMAHA MOTOCORP</h5>
+                        <p class="card-text">Role: Siebel CRM Consultant</p>
+                        <p class="card-text">Tenure: January 2020 - April 2020</p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div id="technical-skills" class="section">
-            <h2 class="section-title">Technical Skills</h2>
+            <h2 class="section-title"><i class="fas fa-cogs"></i> Technical Skills</h2>
             <div class="info-group">
                 <ul>
                     <li>Full-Stack Development</li>
@@ -270,7 +385,7 @@
         </div>
 
         <div id="trained-skills" class="section">
-            <h2 class="section-title">Trained Skills</h2>
+            <h2 class="section-title"><i class="fas fa-lightbulb"></i> Trained Skills</h2>
             <div class="info-group">
                 <ul>
                     <li>Android Application Development</li>
@@ -283,56 +398,11 @@
                 </ul>
             </div>
         </div>
-
-        <div id="education" class="section">
-            <h2 class="section-title">Education</h2>
-            <div class="info-group">
-                <strong>M. Tech in Computer Software Engineering</strong>
-                <p>Institute: Birla Institute of Technology and Science, Pilani</p>
-                <p>Year: 2019 - 2023</p>
-                <p>Grade: 7.51 CGPA</p>
-            </div>
-            <div class="info-group">
-                <strong>BCA in Computer/Information Technology Administration and Management</strong>
-                <p>Institute: Magadh University</p>
-                <p>Year: 2016 - 2019</p>
-                <p>Grade: 74.25%</p>
-            </div>
-        </div>
     </div>
 
-    <!-- jQuery and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            // Smooth scrolling
-            $('a.nav-link').on('click', function (event) {
-                if (this.hash !== "") {
-                    event.preventDefault();
-                    var hash = this.hash;
-                    $('html, body').animate({
-                        scrollTop: $(hash).offset().top - 70
-                    }, 800, function () {
-                        window.location.hash = hash - 70;
-                    });
-                }
-            });
-
-            // Highlight navbar items on scroll
-            $(window).on('scroll', function () {
-                var scrollDistance = $(window).scrollTop();
-                $('.section').each(function (i) {
-                    if ($(this).position().top <= scrollDistance + 75) {
-                        $('.nav .nav-link.active').removeClass('active');
-                        $('.nav .nav-link').eq(i).addClass('active');
-                    }
-                });
-            }).scroll();
-        });
-    </script>
 </body>
 
 </html>
