@@ -2,407 +2,727 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhinav Kumar's Portfolio</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            background-color: #f7f7f7;
-            overflow-x: hidden; /* Prevent horizontal scrollbar */
-            position: relative; /* Ensure stacking context for z-index */
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhinav - Personal portfolio</title>
 
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Place behind other content */
-            opacity: 0.5; /* 50% transparency */
-            animation: changeBackground 15s infinite; /* Infinite loop for gradient change */
-            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
-            background-size: 600% 600%; /* Smooth gradient transition */
-        }
+  <!-- 
+    - favicon
+  -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/angular.png">
 
-        @keyframes changeBackground {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 250px;
-            padding: 20px;
-            background-color: #343a40;
-            color: #fff;
-            border-right: 1px solid #ddd;
-            z-index: 1; /* Ensure sidebar is above background */
-        }
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap"
+    rel="stylesheet">
 
-        .sidebar img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto 20px;
-            border: 3px solid #fff;
-        }
 
-        .sidebar h1 {
-            font-size: 22px;
-            text-align: center;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
 
-        .sidebar p {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #bbb;
-            font-size: 14px;
-        }
-
-        .sidebar .nav-link {
-            color: #fff;
-            font-size: 16px;
-            margin-bottom: 10px;
-            transition: color 0.3s;
-        }
-
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            color: #17a2b8;
-        }
-
-        .content {
-            margin-left: 270px;
-            padding: 20px;
-            z-index: 0; /* Ensure content is below sidebar */
-        }
-
-        .section {
-            padding: 50px 0;
-        }
-
-        .section-title {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #17a2b8;
-            font-weight: 600;
-        }
-
-        .section-title i {
-            margin-right: 10px;
-        }
-
-        /* Animation for tiles and cards */
-        .info-card,
-        .info-tile {
-            transition: transform 0.3s ease-in-out, background-color 0.3s;
-        }
-
-        .info-card:hover,
-        .info-tile:hover {
-            transform: scale(1.05);
-            background-color: #e9f5f9;
-        }
-
-        .info-group strong {
-            display: block;
-            font-size: 18px;
-            color: #17a2b8;
-            margin-bottom: 5px;
-        }
-
-        .info-group p {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .info-group ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .info-group ul li {
-            font-size: 16px;
-            margin-bottom: 5px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .info-group ul li:before {
-            content: "\f058";
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: #17a2b8;
-        }
-
-        .social-icons a {
-            color: #fff;
-            margin: 0 10px;
-            font-size: 20px;
-            transition: color 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: #17a2b8;
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                margin-left: 0;
-            }
-
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 1px solid #ddd;
-                z-index: 1; /* Ensure sidebar is above background */
-            }
-        }
-    </style>
 </head>
 
-<body>
+<body id="top" class="dark_theme">
 
-    <!-- Background Images -->
-    <div class="background-container"></div>
+  <!-- 
+    - #HEADER
+  -->
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <img src="profile-photo.jpg" alt="Profile Photo">
-        <h1>Abhinav Kumar</h1>
-        <p>SAP Security & GRC Consultant</p>
-        <nav class="nav flex-column">
-            <a class="nav-link active" href="#home"><i class="fas fa-home"></i> Home</a>
-            <a class="nav-link" href="#personal-details"><i class="fas fa-user"></i> Personal Details</a>
-            <a class="nav-link" href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
-            <a class="nav-link" href="#professional-details"><i class="fas fa-briefcase"></i> Professional Details</a>
-            <a class="nav-link" href="#project-experience"><i class="fas fa-tasks"></i> Project Experience</a>
-            <a class="nav-link" href="#technical-skills"><i class="fas fa-cogs"></i> Technical Skills</a>
-            <a class="nav-link" href="#trained-skills"><i class="fas fa-lightbulb"></i> Trained Skills</a>
-        </nav>
-        <div class="social-icons text-center">
-            <a href="https://www.linkedin.com/in/abhinav-kumar-504880241" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <!-- Add other social links as needed -->
-        </div>
+  <header class="header" data-header>
+    <div class="container">
+
+      <h1 class="h1 logo">
+        <a href="#">Abhinav Kumar<span>.</span></a>
+      </h1>
+
+      <div class="navbar-actions">
+
+
+        <button class="theme-btn" aria-label="Change Theme" title="Change Theme" data-theme-btn>
+          <span class="icon"></span>
+        </button>
+
+      </div>
+
+      <button class="nav-toggle-btn" aria-label="Toggle Menu" title="Toggle Menu" data-nav-toggle-btn>
+        <span class="one"></span>
+        <span class="two"></span>
+        <span class="three"></span>
+      </button>
+
+      <nav class="navbar" data-navbar>
+        <ul class="navbar-list">
+
+          <li>
+            <a href="#home" class="navbar-link">Home.</a>
+          </li>
+
+          <li>
+            <a href="#about" class="navbar-link">About Me.</a>
+          </li>
+          <li>
+            <a href="#edu" class="navbar-link">Education.</a>
+          </li>
+
+          <li>
+            <a href="#skills" class="navbar-link">Skills.</a>
+          </li>
+
+          <li>
+            <a href="#contact" class="navbar-link">Contact.</a>
+          </li>
+
+        </ul>
+      </nav>
+
     </div>
+  </header>
 
-    <!-- Content -->
-    <div class="content">
-        <div id="home" class="section">
-            <h2 class="section-title"><i class="fas fa-home"></i> Welcome</h2>
-            <p>I'm a Web Developer with extensive experience in SAP Security and GRC Consulting. My expertise spans various projects and skills.</p>
+
+
+
+
+  <main>
+    <article class="container">
+
+      <!-- 
+        - #HERO
+      -->
+
+
+      <section class="hero" id="home">
+
+        <figure class="hero-banner">
+          <section class="about">
+
+            <figure class="about-banner">
+              <img src="./assets/images/PF2.png" alt="A man in a alice blue shirt with a thinking expression"
+                class="w-100">
+            </figure>
+            <div class="about-content section-content">
+
+              <p class="section-subtitle">Home</p>
+
+              <h2 class="h3 section-title">My Short Professional Profile</h2>
+
+              <p class="section-text">
+                I am Senior Project Engineer with over 4+ years of experience at Wipro, specializing in SAP Security &
+                Authorization and SAP GRC. Demonstrated expertise in managing SAP User administration, conducting
+                security
+                assessments, and leading cross-functional teams through project life cycles. Proven ability to
+                collaborate
+                with stakeholders, providing expert guidance on security needs, and delivering comprehensive user
+                training
+                programs. Adept at executing SAP security projects with a focus on timely delivery and quality outcomes.
+                Experienced in troubleshooting complex security issues, ensuring system integrity, and implementing
+                remediation plans to mitigate risks. Strong leadership skills demonstrated in guiding teams and
+                maintaining
+                open communication channels with both team members and stakeholders. Additionally, possesses expertise
+                in
+                SIEBEL CRM, serving as a Technical - Workflow Manager, analysing business requirements, and ensuring
+                seamless integration with various modules.
+              </p>
+
+              <!-- <div class="btn-group">
+            <button class="btn btn-secondary">Hire me</button>
+
+            <button class="btn btn-primary">Download cv</button>
+          </div> -->
+
+            </div>
+
+          </section>
+
+        </figure>
+
+
+        <ul class="hero-social-list">
+
+          <li>
+            <a href="https://www.facebook.com/abhinavkumar710" class="hero-social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+
+              <div class="tooltip">Facebook</div>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.instagram.com/abhinavkumar710?igsh=MW83aDR1cGc4YnI4Yg==" class="hero-social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+
+              <div class="tooltip">Instagram</div>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.linkedin.com/in/abhinav-kumar-504880241/" class="hero-social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+
+              <div class="tooltip">Linkedin</div>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/A-Trident" class="hero-social-link">
+              <ion-icon name="logo-github"></ion-icon>
+
+              <div class="tooltip">Github</div>
+            </a>
+          </li>
+
+        </ul>
+
+
+
+      </section>
+
+
+
+
+
+      <!-- 
+        - #STATS
+      -->
+
+      <section class="stats" id="stats">
+        <div class="about-content section-content">
+
+          <p class="section-subtitle">Project Experience</p>
+          <ul class="stats-list">
+
+            <li>
+              <a href="#" class="stats-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/stats-card_icon-1.png" alt="Badge icon">
+                </div>
+
+                <h2 class="h2 card-title">
+                  1 <strong><h2>RS Components</h2> <br> Role: Senior SAP Security Consultant</strong>
+                </h2>
+
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="stats-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/stats-card_icon-2.png" alt="Checkmark icon">
+                </div>
+
+                <h2 class="h2 card-title">
+                  2 <strong><h2> Sydney Water Corporation</h2> <br> Role: SAP Security & GRC Consultant</strong>
+
+                </h2>
+                <p>
+
+                </p>
+
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="stats-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/stats-card_icon-3.png" alt="Peoples rating icon">
+                </div>
+
+                <h2 class="h2 card-title">
+                  3 <strong><h2>YAMAHA MOTOCORP</h2><br>Role: Siebel CRM Consultant</strong>
+                </h2>
+
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+      <!-- 
+        - #ABOUT
+      -->
+
+      <section class="about" id="about">
+        <figure class="about-banner">
+          <img src="./assets/images/bgf1.png" alt="A man in a alice blue shirt with a thinking expression"
+            class="w-100">
+        </figure>
+
+
+        <div class="about-content section-content">
+
+          <p class="section-subtitle">About me</p>
+
+          <h2 class="h3 section-title">My Personal Detials</h2>
+          <hr>
+          <p class="section-text">
+            Name: Abhinav Kumar
+            <br>
+            Nationality: Indian
+            <br>
+            Religion: Hindu
+            <br>
+            Caste: Kurmi
+            <br>
+            Date of Birth: 7th October 1994
+            <br>
+            Height: 5'8"
+          </p>
+          <hr>
+          <p class="section-text">
+            Father's Name: Mukesh Kumar
+            <br>
+            Occupation: QC Executive in Pepsico
+            <br>
+            location: Oman
+            <br>
+            Mobile Number: +968 92129020
+          </p>
+          <hr>
+          <p class="section-text">
+            Mother's Name: Nitu Singh
+            <br>
+            Occupation: Housewife
+            <br>
+            Mobile Number: +91 9973426521
+          </p>
+          <hr>
+          <p class="section-text">
+
+            Brother's Name: Shubham Kumar
+            <br>
+            Occupation: Human Resource Consultant
+          </p>
+
+          <!-- <div class="btn-group">
+            <button class="btn btn-secondary">Hire me</button>
+
+            <button class="btn btn-primary">Download cv</button>
+          </div> -->
+
         </div>
 
-        <div id="personal-details" class="section">
-            <h2 class="section-title"><i class="fas fa-user"></i> Personal Details</h2>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-id-badge"></i> Name:</h5>
-                        <p class="card-text">Abhinav Kumar</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-flag"></i> Nationality:</h5>
-                        <p class="card-text">Indian</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-praying-hands"></i> Religion:</h5>
-                        <p class="card-text">Hindu</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-users"></i> Caste:</h5>
-                        <p class="card-text">Kurmi</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-birthday-cake"></i> Date of Birth:</h5>
-                        <p class="card-text">7th October 1994</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-arrows-alt-v"></i> Height:</h5>
-                        <p class="card-text">5'8"</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-user-tie"></i> Father's Name:</h5>
-                        <p class="card-text">Mukesh Kumar</p>
-                        <p class="card-text">Occupation: Chemist in Oman</p>
-                        <p class="card-text">Mobile Number: +968 92129020</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-female"></i> Mother's Name:</h5>
-                        <p class="card-text">Nitu Singh</p>
-                        <p class="card-text">Occupation: Housewife</p>
-                        <p class="card-text">Mobile Number: +91 9973426521</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-male"></i> Brother's Name:</h5>
-                        <p class="card-text">Shubham Kumar</p>
-                        <p class="card-text">Occupation: Human Resource Consultant</p>
-                    </div>
-                </div>
-            </div>
+
+      </section>
+      <!-- 
+        - #EDUCATION
+      -->
+      <section class="about" id="edu">
+
+        <div class="about-content section-content">
+
+          <p class="section-subtitle">Education</p>
+
+          <h2 class="h3 section-title">Birla Institute of Technology and Science, Pilani</h2>
+
+          <p class="section-text">
+            M. TECH, Computer Software Engineering<br>
+            2019 - 2023 <br>
+            GRADE: 7.51 CGPA<br>
+
+          </p>
+          <h2 class="h3 section-title">Magadh University, Bodh Gaya</h2>
+
+          <p class="section-text">
+
+            BACHELOR OF COMPUTER APPLICATION<br>
+            2016 – 2019 <br>
+            GRADE: 74.25%
+          </p>
         </div>
 
-        <div id="education" class="section">
-            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-university"></i> M. Tech in Computer Software Engineering</h5>
-                        <p class="card-text">Birla Institute of Technology and Science, Pilani</p>
-                        <p class="card-text">2019 - 2023</p>
-                        <p class="card-text">Grade: 7.51 CGPA</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-university"></i> BCA in Computer/Information Technology Administration and Management</h5>
-                        <p class="card-text">Magadh University</p>
-                        <p class="card-text">2016 - 2019</p>
-                        <p class="card-text">Grade: 74.25%</p>
-                    </div>
-                </div>
-            </div>
+        <figure class="about-banner">
+          <img src="./assets/images/project-4.png" alt="A man in a alice blue shirt with a thinking expression"
+            class="w-100">
+        </figure>
+
+
+      </section>
+
+
+      <!-- 
+        - #SKILLS
+      -->
+
+      <section class="skills" id="skills">
+
+        <div class="skills-content section-content">
+
+          <p class="section-subtitle">My skills</p>
+
+          <h2 class="h3 section-title">What My Professional Skills Included?</h2>
+
+          <p class="section-text">
+            I develop simple, intuitive and responsive user interface that helps users get things done with less effort
+            and time
+            with those technologies.
+          </p>
+
+          <div class="skills-toggle" data-toggle-box>
+            <button class="toggle-btn active" data-toggle-btn>Tools</button>
+
+            <button class="toggle-btn" data-toggle-btn>Skills</button>
+          </div>
+
         </div>
 
-        <div id="professional-details" class="section">
-            <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Details</h2>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-user-tie"></i> Current Position:</h5>
-                        <p class="card-text">SAP Security & GRC Consultant</p>
-                        <p class="card-text">Company: Wipro Limited, Pune, Maharashtra</p>
-                        <p class="card-text">Experience: Since January 2020</p>
-                    </div>
+        <div class="skills-box" data-skills-box>
+
+          <ul class="skills-list">
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">SAP</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/sap.png" alt="TypeScript logo">
                 </div>
-            </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">HTML5</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/html5.png" alt="HTML5 logo">
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">CSS3</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/css3.png" alt="CSS3 logo">
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">JavaScript</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/javascript.png" alt="JavaScript logo">
+                </div>
+              </div>
+            </li>
+
+
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">jQuery</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/jquery.png" alt="jQuery logo">
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">Bootstrap</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/bootstrap.png" alt="Bootstrap logo">
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">Angular</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/angular.png" alt="Angular logo">
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">React</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/react.png" alt="React logo">
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">Vue</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/vue.png" alt="Vue logo">
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">Firebase</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/firebase.png" alt="Firebase logo">
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">PugJs</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/pugjs.png" alt="PugJs logo">
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="skill-card">
+                <div class="tooltip">SASS</div>
+
+                <div class="card-icon">
+                  <img src="./assets/images/sass.png" alt="SASS logo">
+                </div>
+              </div>
+            </li>
+
+          </ul>
+
+          <ul class="tools-list">
+
+
+            <p class="section-text">
+              1. Full-Stack Development<br>
+              2. CCNA (Cisco Certified Network Associate)<br>
+              3. Automation<br>
+              4. SAP Security Administration<br>
+              5. SAP GRC Access Control<br>
+              6. Android Application Development<br>
+              7. Artificial Intelligence, Robotics, and Machine Learning<br>
+              8. Ethical Hacking<br>
+              9. Programming Languages: C, C++, Java, Visual Studio<br>
+              10. Cyber Security<br>
+              11. Cisco Certified Network Associate <br>
+              12. Troubleshooting<br>
+              13. Team Leadership<br>
+              14. Communication<br>
+              15. Ethical Hacking<br>
+              16. Cloud Computing
+            </p>
+
+
+
+          </ul>
+
         </div>
 
-        <div id="project-experience" class="section">
-            <h2 class="section-title"><i class="fas fa-tasks"></i> Project Experience</h2>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-project-diagram"></i> Project 1: RS Components Limited</h5>
-                        <p class="card-text">Role: Senior SAP Security Consultant</p>
-                        <p class="card-text">Tenure: April 2021 - Present</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-project-diagram"></i> Project 2: Sydney Water Corporation</h5>
-                        <p class="card-text">Role: SAP Security & GRC Consultant</p>
-                        <p class="card-text">Tenure: April 2020 - April 2021</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-group">
-                <div class="card info-card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-project-diagram"></i> Project 3: YAMAHA MOTOCORP</h5>
-                        <p class="card-text">Role: Siebel CRM Consultant</p>
-                        <p class="card-text">Tenure: January 2020 - April 2020</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </section>
 
-        <div id="technical-skills" class="section">
-            <h2 class="section-title"><i class="fas fa-cogs"></i> Technical Skills</h2>
-            <div class="info-group">
-                <ul>
-                    <li>Full-Stack Development</li>
-                    <li>CCNA</li>
-                    <li>Automation</li>
-                    <li>SAP Security Administration</li>
-                    <li>SAP GRC Access Control</li>
-                    <li>Troubleshooting</li>
-                    <li>Team Leadership</li>
-                    <li>Communication</li>
-                    <li>Ethical Hacking</li>
-                    <li>Cloud Computing</li>
-                </ul>
-            </div>
-        </div>
 
-        <div id="trained-skills" class="section">
-            <h2 class="section-title"><i class="fas fa-lightbulb"></i> Trained Skills</h2>
-            <div class="info-group">
-                <ul>
-                    <li>Android Application Development</li>
-                    <li>Artificial Intelligence, Robotics, and Machine Learning</li>
-                    <li>Ethical Hacking</li>
-                    <li>Programming Languages: C, C++, Java, Visual Studio</li>
-                    <li>Web Designing Languages: HTML, CSS, JavaScript, jQuery, JSP, ExpressJS, ReactJS, NodeJS, PHP</li>
-                    <li>Cyber Security</li>
-                    <li>Cisco Certified Network Association</li>
-                </ul>
-            </div>
+      <!-- 
+        - #CONTACT
+      -->
+
+      <section class="contact" id="contact">
+
+        <div class="contact-content section-content">
+
+          <p class="section-subtitle">Contact</p>
+
+          <h2 class="h3 section-title">For any query or concern!</h2>
+
+          <p class="section-text">
+            Get in touch and let me know how i can help.
+          </p>
+
+          <ul class="contact-list">
+
+            <li class="contact-list-item">
+
+              <div class="contact-item-icon">
+                <ion-icon name="location-outline"></ion-icon>
+              </div>
+
+              <div class="wrapper">
+                <h3 class="h4 contact-item-title">Address:</h3>
+
+                <address class="contact-info">
+                  Hinjewadi Phase 2, Pune Maharastra
+                </address>
+              </div>
+
+            </li>
+
+            <li class="contact-list-item">
+
+              <div class="contact-item-icon">
+                <ion-icon name="call-outline"></ion-icon>
+              </div>
+
+              <div class="wrapper">
+                <h3 class="h4 contact-item-title">Phone:</h3>
+
+                <a href="tel:01234567789" class="contact-info">(+91) 896 927 6227</a>
+
+                
+              </div>
+
+            </li>
+
+            <li class="contact-list-item">
+
+              <div class="contact-item-icon">
+                <ion-icon name="mail-outline"></ion-icon>
+              </div>
+
+              <div class="wrapper">
+                <h3 class="h4 contact-item-title">Email:</h3>
+
+                <a href="mailto:kumar.abhinav227@gmail.com" class="contact-info">kumar.abhinav227@gmail.com</a>
+
+              </div>
+
+            </li>
+
+            <li>
+              <ul class="contac-social-list">
+
+                <li>
+                  <a href="https://www.facebook.com/abhinavkumar710" class="contact-social-link">
+                    <div class="tooltip">Facebook</div>
+
+                    <ion-icon name="logo-facebook"></ion-icon>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="https://www.instagram.com/abhinavkumar710?igsh=MW83aDR1cGc4YnI4Yg=="
+                    class="contact-social-link">
+                    <div class="tooltip">Instagram</div>
+
+                    <ion-icon name="logo-instagram"></ion-icon>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="https://www.linkedin.com/in/abhinav-kumar-504880241/" class="contact-social-link">
+                    <div class="tooltip">Linkedin</div>
+
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/A-Trident" class="contact-social-link">
+                    <div class="tooltip">Github</div>
+
+                    <ion-icon name="logo-github"></ion-icon>
+                  </a>
+                </li>
+
+
+                <li>
+                  <a href="https://www.youtube.com/channel/UCGFuO4TehwPheu5IhjQmx5Q" class="contact-social-link">
+                    <div class="tooltip">Youtube</div>
+
+                    <ion-icon name="logo-youtube"></ion-icon>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
+          </ul>
+
         </div>
+        <figure class="about-banner">
+          <img src="./assets/images/project-7.png" alt="A man in a alice blue shirt with a thinking expression"
+            class="w-100">
+        </figure>
+
+
+
+      </section>
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer">
+    <div class="container">
+
+      <p class="h1 logo">
+        <a href="#">
+          Abhinav Kumar<span>.</span>
+        </a>
+      </p>
+
+      <p class="copyright">
+        &copy; 2022. All rights reserved
+      </p>
+
     </div>
+  </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+  <!-- 
+    - #GO TO TOP
+  -->
+
+  <a href="#top" class="go-top" data-go-top title="Go to Top">
+    <ion-icon name="arrow-up"></ion-icon>
+  </a>
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+
+
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </body>
 
 </html>
